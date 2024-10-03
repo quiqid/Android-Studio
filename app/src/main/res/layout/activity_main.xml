@@ -25,4 +25,24 @@
         android:text=""
         android:textSize="16sp"
         android:paddingTop="16dp" />
+
+    <EditText
+        android:id="@+id/thresholdInput"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:ems="10"
+        android:hint="@string/hint2_text"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/calculateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn2_text"/>
+
+    <TextView
+        android:id="@+id/resultText"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="@string/result_text" />
 </LinearLayout>
