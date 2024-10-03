@@ -15,6 +15,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // LR1
+
         val inputChar = findViewById<EditText>(R.id.inputChar)
         val checkButton = findViewById<Button>(R.id.checkButton)
         val resultTextView = findViewById<TextView>(R.id.resultTextView)
@@ -41,10 +43,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // LR1
+        // LR2
+
         // Связываем элементы интерфейса
         val thresholdInput = findViewById<EditText>(R.id.thresholdInput)
         val calculateButton = findViewById<Button>(R.id.calculateButton)
-        val resultText = findViewById<TextView>(R.id.resultText)
+        val result2Text = findViewById<TextView>(R.id.resultText2)
 
         // Обработчик нажатия кнопки
         calculateButton.setOnClickListener {
@@ -57,24 +62,55 @@ class MainActivity : AppCompatActivity() {
                 val result = calculateFractionSum(threshold)
 
                 // Выводим результат
-                resultText.text = "Сумма: ${result.sum}\n" +
+                result2Text.text = "Сумма: ${result.sum}\n" +
                         "Последнее слагаемое: ${result.lastTerm}\n" +
                         "Количество итераций: ${result.iterations}"
             } else {
-                resultText.text = "Пожалуйста, введите порог."
+                result2Text.text = "Пожалуйста, введите порог."
             }
         }
+
+        // LR2
+        // LR3
+
+        // Связываем элементы интерфейса с кодом
+        val inputString = findViewById<EditText>(R.id.inputString)
+        val inputOldChar = findViewById<EditText>(R.id.inputOldChar)
+        val inputNewChar = findViewById<EditText>(R.id.inputNewChar)
+        val replaceButton = findViewById<Button>(R.id.replaceButton)
+        val result3Text = findViewById<TextView>(R.id.resultText)
+
+        // Обработчик нажатия кнопки
+        replaceButton.setOnClickListener {
+            // Получаем значения, введённые пользователем
+            val str = inputString.text.toString()
+            val oldChar = inputOldChar.text.toString()
+            val newChar = inputNewChar.text.toString()
+
+            // Проверяем, что старый символ и новый символ введены корректно
+            if (oldChar.length == 1 && newChar.length == 1) {
+                // Выполняем замену символа
+                val result = str.replace(oldChar[0], newChar[0])
+
+                // Выводим результат
+                result3Text.text = "Результат: $result"
+            } else {
+                result3Text.text = "Пожалуйста, введите один символ для замены и новый символ."
+            }
+        }
+
+        // LR3
     }
 
-    // Функция для вычисления факториала
+    // Функция для вычисления факториала LR2
     private fun factorial(n: Int): Long {
         return if (n == 0 || n == 1) 1 else n * factorial(n - 1)
     }
 
-    // Структура для хранения результатов вычисления
+    // Структура для хранения результатов вычисления LR2
     data class CalculationResult(val sum: Double, val lastTerm: Double, val iterations: Int)
 
-    // Функция для вычисления суммы дробей
+    // Функция для вычисления суммы дробей LR2
     private fun calculateFractionSum(threshold: Double): CalculationResult {
         var sum = 0.0
         var n = 1 // Начальное нечетное число

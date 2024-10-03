@@ -6,4 +6,9 @@
     <string name="hint2_text">Enter threshold</string>
     <string name="btn2_text">Calculate</string>
     <string name="result_text">Result</string>
+
+    <string name="hint3_text">Enter string</string>
+    <string name="hint4_text">Enter char for replacement</string>
+    <string name="hint5_text">Enter replacement char</string>
+    <string name="btn3_text">Replace</string>
 </resources>
