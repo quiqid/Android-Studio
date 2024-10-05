@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         // LR3
 
         // Связываем элементы интерфейса с кодом
-        val inputString = findViewById<EditText>(R.id.inputString)
+        val inputString = findViewById<EditText>(R.id.inputString) // eee
         val inputOldChar = findViewById<EditText>(R.id.inputOldChar)
         val inputNewChar = findViewById<EditText>(R.id.inputNewChar)
         val replaceButton = findViewById<Button>(R.id.replaceButton)
