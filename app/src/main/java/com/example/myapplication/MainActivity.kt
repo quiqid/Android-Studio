@@ -1,19 +1,28 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.myapplication.R
 import kotlin.math.abs
+
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // Находим кнопку по ID и устанавливаем слушатель нажатий
+        val button = findViewById<Button>(R.id.button)
+        button.setOnClickListener {
+            // Создаем Intent для перехода на SecondActivity
+            val intent = Intent(this, MainActivity2::class.java)
+            startActivity(intent)
+        }
 
         // LR1
 
@@ -74,7 +83,7 @@ class MainActivity : AppCompatActivity() {
         // LR3
 
         // Связываем элементы интерфейса с кодом
-        val inputString = findViewById<EditText>(R.id.inputString) // eee
+        val inputString = findViewById<EditText>(R.id.inputString)
         val inputOldChar = findViewById<EditText>(R.id.inputOldChar)
         val inputNewChar = findViewById<EditText>(R.id.inputNewChar)
         val replaceButton = findViewById<Button>(R.id.replaceButton)
