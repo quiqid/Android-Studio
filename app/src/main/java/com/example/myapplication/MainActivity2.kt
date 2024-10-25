@@ -52,6 +52,13 @@ class MainActivity2 : AppCompatActivity() {
         // Слушатели кнопок
         trueButton.setOnClickListener { checkAnswer(true) }
         falseButton.setOnClickListener { checkAnswer(false) }
+        nextButton.setOnClickListener { moveToNextQuestion() }
+
+        // Блокируем кнопку Next на последнем вопросе
+        if (currentIndex == questionBank.size - 1) {
+            nextButton.isEnabled = false
+            nextButton.isVisible = false
+        }
     }
 
     private fun updateQuestion() {
@@ -80,6 +87,14 @@ class MainActivity2 : AppCompatActivity() {
             Toast.makeText(this, "Quiz finished! Your score: $score", Toast.LENGTH_LONG).show()
             nextButton.isEnabled = false
             nextButton.isVisible = false
+        }
+    }
+
+    private fun moveToNextQuestion() {
+        if (currentIndex < questionBank.size - 1) {
+            currentIndex++
+            isAnswered = false
+            updateQuestion()
         }
     }
 
