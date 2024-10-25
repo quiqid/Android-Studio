@@ -5,6 +5,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 
 class MainActivity2 : AppCompatActivity() {
     data class Question(val text: String, val answer: Boolean)
@@ -44,5 +45,48 @@ class MainActivity2 : AppCompatActivity() {
         trueButton = findViewById(R.id.true_button)
         falseButton = findViewById(R.id.false_button)
         nextButton = findViewById(R.id.next_button)
+
+        // Установка текущего вопроса
+        updateQuestion()
+
+        // Слушатели кнопок
+        trueButton.setOnClickListener { checkAnswer(true) }
+        falseButton.setOnClickListener { checkAnswer(false) }
+    }
+
+    private fun updateQuestion() {
+        questionTextView.text = questionBank[currentIndex].text
+        trueButton.isEnabled = !isAnswered
+        falseButton.isEnabled = !isAnswered
+    }
+
+    private fun checkAnswer(userAnswer: Boolean) {
+        if (isAnswered) return
+        val correctAnswer = questionBank[currentIndex].answer
+        if (userAnswer == correctAnswer) score++
+        isAnswered = true
+
+        // Делаем кнопки невидимыми после ответа
+        trueButton.isEnabled = false
+        falseButton.isEnabled = false
+        Toast.makeText(
+            this,
+            if (userAnswer == correctAnswer) "Correct!" else "Incorrect!",
+            Toast.LENGTH_SHORT
+        ).show()
+
+        // Проверка завершения всех вопросов
+        if (currentIndex == questionBank.size - 1) {
+            Toast.makeText(this, "Quiz finished! Your score: $score", Toast.LENGTH_LONG).show()
+            nextButton.isEnabled = false
+            nextButton.isVisible = false
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(KEY_INDEX, currentIndex)
+        outState.putInt(KEY_SCORE, score)
+        outState.putBoolean(KEY_ANSWERED, isAnswered)
     }
 }
