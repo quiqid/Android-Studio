@@ -1,93 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
-
-    <EditText
-        android:id="@+id/inputChar"
-        android:layout_width="match_parent"
-        android:layout_height="136dp"
-        android:hint="@string/hint_text"
-        android:inputType="text" />
-
-    <Button
-        android:id="@+id/checkButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_text" />
+    tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/resultTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="16sp"
-        android:paddingTop="16dp" />
-
-    <EditText
-        android:id="@+id/thresholdInput"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:ems="10"
-        android:hint="@string/hint2_text"
-        android:inputType="numberDecimal" />
-
-    <Button
-        android:id="@+id/calculateButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn2_text"/>
+        android:id="@+id/textViewQuestion"
+        android:layout_width="344dp"
+        android:layout_height="87dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.703"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.091" />
 
     <TextView
-        android:id="@+id/resultText2"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:text="@string/result_text" />
-
-    <!-- Поле для ввода строки -->
-    <EditText
-        android:id="@+id/inputString"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="@string/hint3_text" />
-
-    <!-- Поле для ввода символа, который нужно заменить -->
-    <EditText
-        android:id="@+id/inputOldChar"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="@string/hint4_text" />
-
-    <!-- Поле для ввода нового символа -->
-    <EditText
-        android:id="@+id/inputNewChar"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="@string/hint5_text" />
+        android:id="@+id/textViewAnswer"
+        android:layout_width="320dp"
+        android:layout_height="61dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.561"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.457" />
 
     <Button
-        android:id="@+id/replaceButton"
+        android:id="@+id/buttonTrue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btn3_text" />
-
-    <TextView
-        android:id="@+id/resultText"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:text="" />
+        android:text="True"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.811"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.313" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonFalse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btntrans_text" />
-</LinearLayout>
+        android:text="False"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.226"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.313" />
+
+    <Button
+        android:id="@+id/buttonNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.814" />
+
+    <Button
+        android:id="@+id/buttonCheat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cheat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.588" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
