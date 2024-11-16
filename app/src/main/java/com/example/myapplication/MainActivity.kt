@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity() {
         buttonTrue.setOnClickListener { checkAnswer(true) }
         buttonFalse.setOnClickListener { checkAnswer(false) }
         buttonNext.setOnClickListener { nextQuestion() }
+        buttonCheat.setOnClickListener { useCheat() }
     }
 
     private fun checkAnswer(userAnswer: Boolean) {
@@ -103,6 +104,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("currentQuestionIndex", currentQuestionIndex)
+        outState.putInt("correctAnswersCount", correctAnswersCount)
+        outState.putInt("cheatCount", cheatCount)
+        outState.putBoolean("isAnswered", isAnswered)
+        outState.putString("answerText", answerText)
+    }
+
     private fun nextQuestion() {
         if (currentQuestionIndex >= questions.size) {
             currentQuestionIndex = 0
@@ -130,5 +140,17 @@ class MainActivity : AppCompatActivity() {
 
         buttonNext.text = "Restart"
         buttonNext.visibility = View.VISIBLE
+    }
+
+    private fun useCheat() {
+        if (cheatCount < 3) {
+            val next = Intent(this, MainActivity2::class.java)
+            next.putExtra("questionIndex", currentQuestionIndex)
+            next.putExtra("correctAnswer", questions[currentQuestionIndex].second)
+            startActivity(next)
+            cheatCount++
+        } else {
+            Toast.makeText(this, "Вы исчерпали лимит подсказок!", Toast.LENGTH_SHORT).show()
+        }
     }
 }
