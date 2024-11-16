@@ -1,8 +1,11 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -24,20 +27,108 @@ class MainActivity : AppCompatActivity() {
     private var answerText = ""
 
     private val questions = listOf(
-        Pair("Все медузы являются ядовитыми?", false),
-        Pair("Птицы являются потомками динозавров?", true),
-        Pair("Вода кипит при температуре 100 градусов Цельсия на любой высоте?", false),
-        Pair("Слон — это самое крупное сухопутное животное на планете?", true)
+        Pair("Живут ли пингвины в тропических лесах?", false),
+        Pair("Является ли вода химическим соединением?", true),
+        Pair("Является ли Луна планетой?", false),
+        Pair("Гепард — это самое крупное быстрое млекопитающее на планете?", true)
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        buttonTrue = findViewById(R.id.buttonTrue)
+        buttonFalse = findViewById(R.id.buttonFalse)
+        questionTextView = findViewById(R.id.textViewQuestion)
+        answerTextView = findViewById(R.id.textViewAnswer)
+        buttonNext = findViewById(R.id.buttonNext)
+        buttonCheat = findViewById(R.id.buttonCheat)
+
+        if (savedInstanceState != null) {
+            currentQuestionIndex = savedInstanceState.getInt("currentQuestionIndex", 0)
+            correctAnswersCount = savedInstanceState.getInt("correctAnswersCount", 0)
+            cheatCount = savedInstanceState.getInt("cheatCount", 0)
+            isAnswered = savedInstanceState.getBoolean("isAnswered", false)
+            answerText = savedInstanceState.getString("answerText", "")
         }
+
+        updateQuestion()
+
+        buttonTrue.setOnClickListener { checkAnswer(true) }
+        buttonFalse.setOnClickListener { checkAnswer(false) }
+        buttonNext.setOnClickListener { nextQuestion() }
+    }
+
+    private fun checkAnswer(userAnswer: Boolean) {
+        if (isAnswered) return
+
+        val correctAnswer = questions[currentQuestionIndex].second
+
+        if (userAnswer == correctAnswer) {
+            answerTextView.text = "Правильный ответ"
+            correctAnswersCount++
+            answerText = "Правильный ответ"
+        } else {
+            answerTextView.text = "Неправильный ответ"
+            answerText = "Неправильный ответ"
+        }
+
+        isAnswered = true
+
+        buttonTrue.visibility = View.GONE
+        buttonFalse.visibility = View.GONE
+        buttonCheat.visibility = View.GONE
+        buttonNext.visibility = View.VISIBLE
+    }
+
+    private fun updateQuestion() {
+        if (currentQuestionIndex < questions.size) {
+            questionTextView.text = questions[currentQuestionIndex].first
+
+            if (isAnswered) {
+                answerTextView.text = answerText
+                buttonNext.visibility = View.VISIBLE
+                buttonTrue.visibility = View.GONE
+                buttonFalse.visibility = View.GONE
+                buttonCheat.visibility = View.GONE
+            } else {
+                answerTextView.text = ""
+                buttonTrue.visibility = View.VISIBLE
+                buttonFalse.visibility = View.VISIBLE
+                buttonCheat.visibility = View.VISIBLE
+                buttonNext.visibility = View.GONE
+            }
+        } else {
+            showFinalScore()
+        }
+    }
+
+    private fun nextQuestion() {
+        if (currentQuestionIndex >= questions.size) {
+            currentQuestionIndex = 0
+            correctAnswersCount = 0
+            cheatCount = 0
+            isAnswered = false
+            answerTextView.text = ""
+            buttonNext.text = "Next"
+            questionTextView.visibility = View.VISIBLE
+        } else {
+            currentQuestionIndex++
+            isAnswered = false
+        }
+
+        updateQuestion()
+    }
+
+    private fun showFinalScore() {
+        questionTextView.visibility = View.GONE
+        answerTextView.text = "Количество правильных ответов: $correctAnswersCount"
+
+        buttonTrue.visibility = View.GONE
+        buttonFalse.visibility = View.GONE
+        buttonCheat.visibility = View.GONE
+
+        buttonNext.text = "Restart"
+        buttonNext.visibility = View.VISIBLE
     }
 }
