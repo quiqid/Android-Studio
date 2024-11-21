@@ -1,84 +1,53 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <TextView
-        android:id="@+id/textViewQuestion"
-        android:layout_width="344dp"
-        android:layout_height="87dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.703"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.091" />
-
-    <TextView
-        android:id="@+id/textViewAnswer"
-        android:layout_width="320dp"
-        android:layout_height="61dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.561"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.457" />
-
-    <Button
-        android:id="@+id/buttonTrue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="True"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.811"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.313" />
+        android:text="Выберите формат фотографии"
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp"/>
+
+    <RadioGroup
+        android:id="@+id/formatRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/format_9x12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9x12 (100 рублей)" />
+
+        <RadioButton
+            android:id="@+id/format_10x15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10x15 (150 рублей)" />
+
+        <RadioButton
+            android:id="@+id/format_18x24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="18x24 (300 рублей)" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/quantityEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Введите количество фотографий"
+        android:inputType="number"
+        android:layout_marginTop="16dp"/>
 
     <Button
-        android:id="@+id/buttonFalse"
-        android:layout_width="wrap_content"
+        android:id="@+id/okButton"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="False"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.226"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.313" />
-
-    <Button
-        android:id="@+id/buttonNext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Next"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.814" />
-
-    <Button
-        android:id="@+id/buttonCheat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cheat"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.588" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:text="ОК"
+        android:layout_marginTop="16dp"/>
+</LinearLayout>
