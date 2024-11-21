@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
             val totalPrice = pricePerPhoto * quantity
 
-            val intent = Intent(this, PaymentActivity::class.java)
+            val intent = Intent(this, MainActivity2::class.java)
             intent.putExtra("TOTAL_PRICE", totalPrice)
             startActivity(intent)
         }
